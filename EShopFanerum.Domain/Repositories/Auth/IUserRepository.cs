@@ -1,4 +1,5 @@
 ﻿using EShopFanerum.Domain.Entites;
+using EShopFanerum.Domain.Entites.Auth;
 
 namespace EShopFanerum.Domain.Repositories.Auth;
 

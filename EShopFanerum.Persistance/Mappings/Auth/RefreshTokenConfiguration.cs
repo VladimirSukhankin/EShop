@@ -1,8 +1,9 @@
 ﻿using EShopFanerum.Domain.Entites;
+using EShopFanerum.Domain.Entites.Auth;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace EShopFanerum.Persistance.Mappings;
+namespace EShopFanerum.Persistance.Mappings.Auth;
 
 public class RefreshTokenConfiguration : IEntityTypeConfiguration<RefreshToken>
 {

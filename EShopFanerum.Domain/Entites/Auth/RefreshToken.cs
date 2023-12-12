@@ -1,4 +1,4 @@
-﻿namespace EShopFanerum.Domain.Entites;
+﻿namespace EShopFanerum.Domain.Entites.Auth;
 
 public class RefreshToken
 {

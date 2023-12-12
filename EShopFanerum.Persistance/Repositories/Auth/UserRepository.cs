@@ -1,4 +1,5 @@
 ﻿using EShopFanerum.Domain.Entites;
+using EShopFanerum.Domain.Entites.Auth;
 using EShopFanerum.Domain.Repositories.Auth;
 using EShopFanerum.Persistance.Contexts;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using EShopFanerum.Auth.WebApi.Models;
 using EShopFanerum.Domain.Entites;
+using EShopFanerum.Domain.Entites.Auth;
 
 namespace EShopFanerum.Auth.WebApi.Mappings;
 

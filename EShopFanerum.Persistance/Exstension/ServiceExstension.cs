@@ -19,4 +19,15 @@ public static class ServiceExtension
         services.AddScoped<IUserRepository, UserRepository>();
         return services;
     }
+    
+    public static IServiceCollection AddDbShop(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        var connectionString = configuration.GetConnectionString("postgresConnection");
+        services.AddDbContext<AuthContext>(options =>
+            options.UseNpgsql(connectionString));
+        services.AddScoped<IUserRepository, UserRepository>();
+        return services;
+    }
 }

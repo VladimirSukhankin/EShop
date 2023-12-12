@@ -8,6 +8,7 @@ using EShopFanerum.Auth.WebApi.Helpers;
 using EShopFanerum.Auth.WebApi.Models;
 using EShopFanerum.Auth.WebApi.Services.Interfaces;
 using EShopFanerum.Domain.Entites;
+using EShopFanerum.Domain.Entites.Auth;
 using EShopFanerum.Domain.Repositories.Auth;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
