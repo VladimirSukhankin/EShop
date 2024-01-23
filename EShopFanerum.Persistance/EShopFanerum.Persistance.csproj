@@ -16,4 +16,10 @@
       <ProjectReference Include="..\EShopFanerum.Domain\EShopFanerum.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Exstension\" />
+      <Folder Include="Migrations\" />
+      <Folder Include="Repositories\" />
+    </ItemGroup>
+
 </Project>
