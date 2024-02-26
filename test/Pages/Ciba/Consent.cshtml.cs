@@ -6,6 +6,7 @@ using Duende.IdentityServer.Validation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using test.Pages.Consent;
 
 namespace test.Pages.Ciba;
 

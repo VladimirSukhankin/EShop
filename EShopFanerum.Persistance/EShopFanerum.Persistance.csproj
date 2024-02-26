@@ -17,9 +17,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Exstension\" />
       <Folder Include="Migrations\" />
-      <Folder Include="Repositories\" />
+      <Folder Include="Repositories\Impl\Material\" />
     </ItemGroup>
 
 </Project>

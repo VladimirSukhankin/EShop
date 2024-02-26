@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using Duende.IdentityServer.Test;
 using IdentityModel;
 using test.Data;
 using test.Models;
@@ -10,6 +11,36 @@ namespace test;
 
 public class SeedData
 {
+    public static List<TestUser> Users
+    {
+        get
+        {
+            var addres = new
+            {
+                street_address = "test adress",
+                locality = "test locality",
+                postal_code = 666,
+                country = "test country"
+            };
+
+            return new List<TestUser>()
+            {
+                new TestUser()
+                {
+                    SubjectId = "1",
+                    Username = "alice",
+                    Password = "alice",
+                    Claims =
+                    {
+                        new Claim(JwtClaimTypes.Name, "Alice Smith"),
+                        new Claim(JwtClaimTypes.GivenName, "Alice"),
+                        new Claim(JwtClaimTypes.FamilyName, "Smith"),
+                        new Claim(JwtClaimTypes.WebSite, "http://alice.com"),
+                    }
+                }
+            };
+        }
+    }
     public static void EnsureSeedData(WebApplication app)
     {
         using (var scope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
