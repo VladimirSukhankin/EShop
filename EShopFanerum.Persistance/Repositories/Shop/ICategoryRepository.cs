@@ -2,5 +2,5 @@
 
 public interface ICategoryRepository
 {
-    
+    //Task AddCategory
 }

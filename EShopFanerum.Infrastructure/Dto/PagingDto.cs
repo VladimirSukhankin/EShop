@@ -2,7 +2,7 @@
 
 public class PagingDto
 {
-    public long PageIndex { get; set; }
+    public int PageIndex { get; set; }
     
-    public long PageSize { get; set; }
+    public int PageSize { get; set; }
 }

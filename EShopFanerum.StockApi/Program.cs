@@ -1,7 +1,10 @@
+using EShopFanerum.Core.Helpers;
 using EShopFanerum.Infrastructure.Extensions;
 using EShopFanerum.Infrastructure.Mappings;
 using EShopFanerum.Infrastructure.Services;
 using EShopFanerum.Infrastructure.Services.Impl;
+using EShopFanerum.Persistance.Exstension;
+using MassTransit;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +16,25 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(StockProfile));
 
-builder.Services.AddScoped<IGoodService, GoodService>();
 builder.Services.AddStockServices();
+
+builder.Services.AddManageDbContext();
+
+//TODO: cut in extension
+var settings = builder.Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((ctx, cfg) =>
+    {
+        cfg.Host(settings.HostNames, settings.VirtualHost, h =>
+        {
+            h.Username(settings.UserName);
+            h.Password(settings.Password);
+        });
+                
+        cfg.ConfigureEndpoints(ctx);
+    });
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

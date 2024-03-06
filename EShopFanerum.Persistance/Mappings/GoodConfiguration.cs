@@ -15,9 +15,13 @@ public class GoodConfiguration : IEntityTypeConfiguration<Good>
         builder.Property(x => x.Name).HasColumnName("Name").IsRequired();
         builder.Property(x => x.Description).HasColumnName("Description");
         builder.Property(x => x.Price).HasColumnName("Price").IsRequired();
-        builder.Property(x => x.Price).HasColumnName("CategoryId");
+        builder.Property(x => x.CategoryId).HasColumnName("CategoryId");
         builder.Property(x => x.ImageId).HasColumnName("ImageId");
         builder.Property(x => x.ImageIconId).HasColumnName("ImageIconId");
 
+        builder.HasOne(x => x.Category)
+            .WithMany()
+            .HasForeignKey(x => x.CategoryId)
+            .HasPrincipalKey(x => x.Id);
     }
 }

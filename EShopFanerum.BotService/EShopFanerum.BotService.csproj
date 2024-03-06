@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EShopFanerum.Core\EShopFanerum.Core.csproj" />
+      <ProjectReference Include="..\EShopFanerum.Infrastructure\EShopFanerum.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

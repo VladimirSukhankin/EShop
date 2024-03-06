@@ -10,7 +10,8 @@ public class StockDbContext : DbContext
     public DbSet<Category> Categories { get; set; }
     public DbSet<BonusProgram> BonusPrograms { get; set; }
     public DbSet<BonusProgramGoods> BonusProgramGoods { get; set; }
-
+    public DbSet<BonusProgramGoods> ShopingCarts { get; set; }
+    
     public DbSet<Material> Materials { get; set; }
     public DbSet<Supplier> Suppliers { get; set; }
     public DbSet<MaterialSupplier> MaterialSuppliers { get; set; }

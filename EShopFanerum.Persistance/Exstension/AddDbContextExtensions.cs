@@ -14,7 +14,7 @@ public static class AddDbContextExtensions
 
     public static void AddManageDbContext(this IServiceCollection services)
     {
-        services.AddDbContext<StockDbContext>(options =>
+        services.AddDbContext<ManageDbContext>(options =>
             options.UseNpgsql("Server=localhost;Port=5432;User ID=postgres;Database=manage;Password=1;TrustServerCertificate=True"));
     }
 }
