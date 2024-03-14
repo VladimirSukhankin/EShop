@@ -1,6 +1,6 @@
 ﻿namespace EShopFanerum.Domain.Entites.Materials;
 
-public class Material
+public class Material : IEntity<long>
 {
     public long Id { get; set; }
     

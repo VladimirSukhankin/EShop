@@ -1,6 +1,6 @@
 ﻿namespace EShopFanerum.Domain.Entites.Shop;
 
-public class ShopingCart
+public class ShopingCart : IEntity<long>
 {
     public long Id { get; set; }
 

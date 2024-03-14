@@ -1,6 +1,6 @@
 ﻿namespace EShopFanerum.Infrastructure.Dto.Stock;
 
-public class SupplierDto
+public class SupplierDto : IDto
 {
     public long Id { get; set; }
     

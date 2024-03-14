@@ -7,12 +7,14 @@
         x:Class="EShopFanerum.Avalonia.ManagerApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="EShopFanerum.Avalonia.ManagerApp">
-
+        Title="EShopFanerum.Avalonia.ManagerApp"
+        RequestedThemeVariant="Light">
+        
     <Window.Styles>
-        <StyleInclude Source="avares://EShopFanerum.Avalonia.ManagerApp/Styles/AppStyles.axaml"/>
+        <StyleInclude Source="avares://EShopFanerum.Avalonia.ManagerApp/Styles/AppStyles.axaml" />
+        <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
     </Window.Styles>
-    
+
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
@@ -22,7 +24,7 @@
     <Grid Classes="mainContainer" RowDefinitions="Auto, *, *">
         <Grid RowDefinitions="Auto">
             <Border Classes="header" Grid.Row="0">
-                <StackPanel 
+                <StackPanel
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
@@ -32,13 +34,13 @@
                 </StackPanel>
             </Border>
         </Grid>
-        <StackPanel 
+        <StackPanel
             Grid.Row="1"
             IsVisible="{Binding InitializationNotifier.IsNotCompleted}"
             VerticalAlignment="Center"
             HorizontalAlignment="Center">
             <ProgressBar
-                Classes="progressBar" 
+                Classes="progressBar"
                 IsIndeterminate="True" />
         </StackPanel>
 
@@ -47,14 +49,92 @@
             IsVisible="{Binding InitializationNotifier.IsCompleted}"
             Margin="5">
             <TabItem Header="Заказы">
-                <TextBlock Margin="5">This is tab 1 content</TextBlock>
+                <StackPanel>
+                    <TextBlock
+                        Margin="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsVisible="{Binding IsNotFound}">
+                        Данных не найдено
+                    </TextBlock>
+                    <DataGrid
+                        IsVisible="{Binding !IsNotFound}"
+                        Margin="20"
+                        ItemsSource="{Binding Orders}"
+                        IsReadOnly="True"
+                        GridLinesVisibility="All"
+                        BorderThickness="1"
+                        BorderBrush="Gray"
+                        CanUserResizeColumns="True"
+                        CanUserReorderColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Guid" Binding="{Binding Guid}" />
+                            <DataGridTextColumn Header="Продукты" Binding="{Binding NameGoods}" />
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}" />
+                            <DataGridTextColumn Header="Статус заказа" Binding="{Binding StateOrder}" />
+                            <DataGridTextColumn Header="Дата создания заказа" Binding="{Binding CreatedDateTime}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+
             </TabItem>
             <TabItem Header="Поставщики">
-                <TextBlock Margin="5">This is tab 2 content</TextBlock>
-            </TabItem>
+                <StackPanel>
+                    <TextBlock
+                        Margin="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsVisible="{Binding IsNotFound}">
+                        Данных не найдено
+                    </TextBlock>
+                    <DataGrid
+                        IsVisible="{Binding !IsNotFound}"
+                        Margin="20"
+                        ItemsSource="{Binding Suppliers}"
+                        IsReadOnly="True"
+                        GridLinesVisibility="All"
+                        BorderThickness="1"
+                        BorderBrush="Gray"
+                        CanUserResizeColumns="True"
+                        CanUserReorderColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}" />
+                            <DataGridTextColumn Header="Рейтинг" Binding="{Binding Raiting}" />
+                            <DataGridCheckBoxColumn Header="Активный" Binding="{Binding IsActive}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                </TabItem>
             <TabItem Header="Материалы">
-                <TextBlock Margin="5">This is tab 3 content</TextBlock>
+                <StackPanel>
+                    <TextBlock
+                        Margin="20"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        IsVisible="{Binding IsNotFound}">
+                        Данных не найдено
+                    </TextBlock>
+                    <DataGrid
+                        IsVisible="{Binding !IsNotFound}"
+                        Margin="20"
+                        ItemsSource="{Binding Materials}"
+                        IsReadOnly="True"
+                        GridLinesVisibility="All"
+                        BorderThickness="1"
+                        BorderBrush="Gray"
+                        CanUserResizeColumns="True"
+                        CanUserReorderColumns="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                            <DataGridTextColumn Header="Наименование" Binding="{Binding Name}" />
+                            <DataGridTextColumn Header="Количество" Binding="{Binding Count}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
             </TabItem>
         </TabControl>
+
     </Grid>
 </Window>

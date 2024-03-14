@@ -32,8 +32,13 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
         <PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
         <PackageReference Include="Nito.AsyncEx.StrongNamed" Version="4.0.1" />
+        <PackageReference Include="Prism.Avalonia" Version="7.2.0.1430" />
+        <PackageReference Include="Prism.DryIoc.Avalonia" Version="7.2.0.1430" />
+        <PackageReference Include="ReactiveUI.Fody" Version="19.5.41" />
     </ItemGroup>
 
 
@@ -44,11 +49,12 @@
 
     <ItemGroup>
       <ProjectReference Include="..\EShopFanerum.Core\EShopFanerum.Core.csproj" />
+      <ProjectReference Include="..\EShopFanerum.Infrastructure\EShopFanerum.Infrastructure.csproj" />
       <ProjectReference Include="..\EShopFanerum.Persistance\EShopFanerum.Persistance.csproj" />
     </ItemGroup>
 
 
     <ItemGroup>
-      <Folder Include="Services\" />
+      <Folder Include="Migrations\" />
     </ItemGroup>
 </Project>

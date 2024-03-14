@@ -1,6 +1,6 @@
 ﻿namespace EShopFanerum.Domain.Entites.Shop;
 
-public class BonusProgramGoods
+public class BonusProgramGoods : IEntity<long>
 {
     public long Id { get; set; }
     

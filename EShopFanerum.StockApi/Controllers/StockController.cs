@@ -1,4 +1,5 @@
-﻿using EShopFanerum.Infrastructure.Requests;
+﻿using EShopFanerum.Infrastructure;
+using EShopFanerum.Infrastructure.Dto.Shop;
 using EShopFanerum.Infrastructure.Requests.Good;
 using EShopFanerum.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -7,34 +8,19 @@ namespace EShopFanerum.StockApi.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class StockController : ControllerBase
+public class StockController : GenericApiController<GoodDto>
 {
     private readonly IGoodService _goodService;
-
-    public StockController(IGoodService goodService)
+    
+    public StockController(IGenericService<GoodDto, long> service, IGoodService goodService) : base(service)
     {
         _goodService = goodService;
     }
     
-    [HttpPost("good")]
-    public async Task AddGoodAsync(AddGoodRequest addGoodRequest, CancellationToken cancellationToken)
+    [HttpPost("goodByIds")]
+    public async Task<ICollection<GoodDto>> GetGoodsByIds(GetGoodByIdsRequest getGoodsRequest, CancellationToken cancellationToken)
     {
-        await _goodService.AddGoodAsync(addGoodRequest, cancellationToken);
+        return await _goodService.GetGoodsByIdsAsync(getGoodsRequest.GoodIds, cancellationToken);
     }
     
-    [HttpPut("good}")]
-    public async Task UpdateGoodAsync(UpdateGoodRequest updateGoodRequest, CancellationToken cancellationToken)
-    {
-        await _goodService.UpdateGoodAsync(updateGoodRequest, cancellationToken);
-    }
-  
-    [HttpDelete("good/{idGood}")]
-    public async Task DeleteGoodAsync(long idGood, CancellationToken cancellationToken)
-    {
-        await _goodService.DeleteGoodAsync(idGood, cancellationToken);
-    }
-    
-    //Поставщик
-    //Материалы
-    // Бонусные программы
 }

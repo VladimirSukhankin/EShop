@@ -2,13 +2,7 @@
 
 namespace EShopFanerum.Persistance.Repositories.Shop;
 
-public interface IGoodRepository
+public interface IGoodRepository : IBaseRepository<Good, long>
 {
-    IQueryable<Good> GetGoodsWithPaging(int pageIndex, int pageSize);
-    IQueryable<Good> GetGoodById(int idGood);
-
-    Task AddGoodAsync(Good good, CancellationToken cancellationToken);
-
-    Task UpdateGoodAsync(Good good, CancellationToken cancellationToken);
-    Task DeleteGoodAsync(long idGood, CancellationToken cancellationToken);
+    public IQueryable<Good> GetGoodsByIds(List<long> ids);
 }

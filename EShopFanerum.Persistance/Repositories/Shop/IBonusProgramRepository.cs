@@ -1,6 +1,8 @@
-﻿namespace EShopFanerum.Persistance.Repositories.Shop;
+﻿using EShopFanerum.Domain.Entites.Shop;
 
-public interface IBonusProgramRepository
+namespace EShopFanerum.Persistance.Repositories.Shop;
+
+public interface IBonusProgramRepository : IBaseRepository<BonusProgram, long>
 {
     
 }

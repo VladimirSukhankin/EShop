@@ -1,6 +1,8 @@
-﻿namespace EShopFanerum.Persistance.Repositories.Shop;
+﻿using EShopFanerum.Domain.Entites.Shop;
 
-public interface ICategoryRepository
+namespace EShopFanerum.Persistance.Repositories.Shop;
+
+public interface ICategoryRepository : IBaseRepository<Category, long>
 {
-    //Task AddCategory
+    
 }

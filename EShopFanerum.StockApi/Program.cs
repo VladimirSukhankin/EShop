@@ -18,8 +18,6 @@ builder.Services.AddAutoMapper(typeof(StockProfile));
 
 builder.Services.AddStockServices();
 
-builder.Services.AddManageDbContext();
-
 //TODO: cut in extension
 var settings = builder.Configuration.GetSection(nameof(RabbitMqSettings)).Get<RabbitMqSettings>();
 builder.Services.AddMassTransit(x =>
