@@ -1,15 +1,18 @@
+using System.Threading;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using EShopFanerum.Avalonia.ManagerApp.Consumer;
 using EShopFanerum.Avalonia.ManagerApp.Extensions;
 using EShopFanerum.Avalonia.ManagerApp.ViewModels;
 using EShopFanerum.Avalonia.ManagerApp.Views;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace EShopFanerum.Avalonia.ManagerApp;
 
-public partial class App : Application
+public class App : Application
 {
     public override void Initialize()
     {
@@ -29,15 +32,15 @@ public partial class App : Application
         collection.AddServices();
         // Creates a ServiceProvider containing services from the provided IServiceCollection
         var services = collection.BuildServiceProvider();
-
-        var vm = services.GetRequiredService<MainWindowViewModel>();
+        
+        
+        BackgroundService backgroundService = new OrderHostedService(services.GetRequiredService<IConsumerService>());
+        
+        backgroundService.StartAsync(CancellationToken.None);
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
-            {
-                DataContext = vm
-            };
+            desktop.MainWindow = new MainWindow(services.GetRequiredService<MainWindowViewModel>());
         }
         
         base.OnFrameworkInitializationCompleted();

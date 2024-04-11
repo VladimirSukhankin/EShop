@@ -3,6 +3,7 @@
         xmlns:vm="using:EShopFanerum.Avalonia.ManagerApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Avalonia.Notification.Controls;assembly=Notification.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="EShopFanerum.Avalonia.ManagerApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -13,6 +14,7 @@
     <Window.Styles>
         <StyleInclude Source="avares://EShopFanerum.Avalonia.ManagerApp/Styles/AppStyles.axaml" />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml" />
+        <StyleInclude Source="avares://Notification.Avalonia/Themes/Generic.xaml" />
     </Window.Styles>
 
     <Design.DataContext>
@@ -21,8 +23,11 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid Classes="mainContainer" RowDefinitions="Auto, *, *">
-        <Grid RowDefinitions="Auto">
+    <Grid Classes="mainContainer" RowDefinitions="Auto, *, *, *, *">
+        <Border VerticalAlignment="Bottom" HorizontalAlignment="Center" Grid.Row="4">
+            <controls:NotificationMessageContainer HorizontalAlignment="Stretch" Manager="{Binding Manager}" />
+        </Border>
+        <Grid Grid.Row="0" RowDefinitions="Auto">
             <Border Classes="header" Grid.Row="0">
                 <StackPanel
                     HorizontalAlignment="Center"

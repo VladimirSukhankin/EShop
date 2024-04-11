@@ -13,13 +13,12 @@ public abstract class GenericService<TDto, TEntity, TKey> : IGenericService<TDto
 {
     private readonly IMapper _mapper;
     private readonly IBaseRepository<TEntity, TKey> _repository;
-    
-    public GenericService(IMapper mapper, IBaseRepository<TEntity, TKey> repository)
+
+    protected GenericService(IMapper mapper, IBaseRepository<TEntity, TKey> repository)
     {
         _mapper = mapper;
         _repository = repository;
     }
-    
 
     public async Task<TDto> GetByIdAsync(TKey dtoId, CancellationToken cancellationToken)
     {

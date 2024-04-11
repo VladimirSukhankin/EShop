@@ -6,30 +6,25 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using EShopFanerum.Avalonia.ManagerApp.Common.Helpers;
+using Avalonia.Notification;
 using EShopFanerum.Avalonia.ManagerApp.Extensions;
 using EShopFanerum.Avalonia.ManagerApp.Models;
 using EShopFanerum.Avalonia.ManagerApp.Persistence;
 using EShopFanerum.Domain.Enums;
-using EShopFanerum.Infrastructure.Dto;
 using EShopFanerum.Infrastructure.Dto.Shop;
 using EShopFanerum.Infrastructure.Dto.Stock;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Nito.AsyncEx;
-using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using Splat;
 
 namespace EShopFanerum.Avalonia.ManagerApp.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private readonly IMessageSender _sender;
-
     private readonly ManagerDbContext _managerDbContext;
-
+    
+    
     private readonly IHttpClientFactory _httpClientFactory;
     public INotifyTaskCompletion InitializationNotifier { get; private set; }
 
@@ -54,24 +49,36 @@ public class MainWindowViewModel : ViewModelBase
     [Reactive]
     public ObservableCollection<SupplierModel> Suppliers { get; }
 
-    public MainWindowViewModel(IMessageSender sender, IHttpClientFactory httpClientFactory, ManagerDbContext dbContext)
+    [Reactive]
+    public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+
+    public MainWindowViewModel()
+    {
+        
+    }
+    public MainWindowViewModel(IHttpClientFactory httpClientFactory, ManagerDbContext dbContext)
     {
         Orders = new ObservableCollection<OrderModel>();
         Materials = new ObservableCollection<MaterialModel>();
         Suppliers = new ObservableCollection<SupplierModel>();
         
-        _sender = sender;
         _managerDbContext = dbContext;
         _httpClientFactory = httpClientFactory;
 
         InitializationNotifier = NotifyTaskCompletion.Create(InitializeAsync());
     }
 
+    public void OnClick()
+    {
+       
+    }
+    
     private async Task InitializeAsync()
     {
         await SetOrdersAsync();
         await SetMaterialsAsync();
         await SetSuppliersAsync();
+       
     }
 
     private async Task SetOrdersAsync()
