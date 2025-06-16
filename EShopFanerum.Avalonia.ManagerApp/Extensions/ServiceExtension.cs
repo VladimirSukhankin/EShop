@@ -46,7 +46,5 @@ public static class ServiceExtension
                 });
             });
         });
-
-        services.AddMassTransitHostedService();
     }
 }
