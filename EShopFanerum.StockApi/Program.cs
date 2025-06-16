@@ -24,10 +24,10 @@ builder.Services.AddMassTransit(x =>
 {
     x.UsingRabbitMq((ctx, cfg) =>
     {
-        cfg.Host(settings.HostNames, settings.VirtualHost, h =>
+        cfg.Host(settings?.HostNames, settings?.VirtualHost, h =>
         {
-            h.Username(settings.UserName);
-            h.Password(settings.Password);
+            h.Username(settings?.UserName);
+            h.Password(settings?.Password);
         });
                 
         cfg.ConfigureEndpoints(ctx);

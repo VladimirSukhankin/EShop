@@ -12,14 +12,8 @@ public static class EnumExtension
     {
         return GetDescription((Enum)element);
     }
-    
-    public static string GetDescription<TEnum>(this TEnum? element)
-        where TEnum : struct, Enum
-    {
-        return GetDescription((Enum)element);
-    }
-    
-    public static string GetDescription(this Enum element, bool emptyResult = false)
+
+    private static string GetDescription(this Enum element, bool emptyResult = false)
     {
         if (element == null)
             throw new ArgumentNullException(nameof(element));
@@ -41,17 +35,17 @@ public static class EnumExtension
 
             if (attributes.Length > 0)
             {
-                return ((DisplayAttribute)attributes[0]).GetName();
+                return ((DisplayAttribute)attributes[0]).GetName()!;
             }
 
             attributes = memberInfo[0].GetCustomAttributes(typeof(EnumMemberAttribute), false);
 
             if (attributes.Length > 0)
             {
-                return ((EnumMemberAttribute)attributes[0]).Value;
+                return ((EnumMemberAttribute)attributes[0]).Value!;
             }
         }
 
-        return emptyResult ? null : element.ToString();
+        return (emptyResult ? null : element.ToString())!;
     }
 }

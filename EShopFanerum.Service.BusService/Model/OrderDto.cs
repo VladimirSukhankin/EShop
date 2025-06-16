@@ -1,4 +1,4 @@
-﻿namespace EShopFanerum.Core.RabbitMQ.Dto;
+﻿namespace EShopFanerum.Service.BusService.Model;
 
 public class OrderDto
 {

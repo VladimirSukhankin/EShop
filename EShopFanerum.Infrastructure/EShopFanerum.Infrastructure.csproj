@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
@@ -14,6 +14,7 @@
       <ProjectReference Include="..\EShopFanerum.Core\EShopFanerum.Core.csproj" />
       <ProjectReference Include="..\EShopFanerum.Domain\EShopFanerum.Domain.csproj" />
       <ProjectReference Include="..\EShopFanerum.Persistance\EShopFanerum.Persistance.csproj" />
+      <ProjectReference Include="..\EShopFanerum.Service.BusService\EShopFanerum.Service.BusService.csproj" />
     </ItemGroup>
 
     <ItemGroup>

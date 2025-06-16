@@ -6,15 +6,11 @@ namespace EShopFanerum.Avalonia.ManagerApp.Consumer;
 
 public class OrderHostedService : BackgroundService
 {
-    private readonly IConsumerService _consumerService;
-
-    public OrderHostedService(IConsumerService consumerService)
-    {
-        _consumerService = consumerService;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await _consumerService.ReadMessages();
+        while (!stoppingToken.IsCancellationRequested)
+        {
+            await Task.Delay(1000, stoppingToken);
+        }
     }
 }

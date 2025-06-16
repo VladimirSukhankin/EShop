@@ -1,4 +1,5 @@
-﻿using EShopFanerum.Core.RabbitMQ.Dto;
+﻿
+using EShopFanerum.Service.BusService.Model;
 
 namespace EShopFanerum.Infrastructure.Services;
 

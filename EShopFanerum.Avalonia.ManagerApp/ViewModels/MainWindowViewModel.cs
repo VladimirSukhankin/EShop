@@ -23,8 +23,8 @@ namespace EShopFanerum.Avalonia.ManagerApp.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private readonly ManagerDbContext _managerDbContext;
-    
-    
+
+
     private readonly IHttpClientFactory _httpClientFactory;
     public INotifyTaskCompletion InitializationNotifier { get; private set; }
 
@@ -40,45 +40,31 @@ public class MainWindowViewModel : ViewModelBase
         }
     }
 
-    [Reactive]
-    public ObservableCollection<OrderModel> Orders { get; }
+    [Reactive] public ObservableCollection<OrderModel> Orders { get; }
 
-    [Reactive]
-    public ObservableCollection<MaterialModel> Materials { get; }
+    [Reactive] public ObservableCollection<MaterialModel> Materials { get; }
 
-    [Reactive]
-    public ObservableCollection<SupplierModel> Suppliers { get; }
+    [Reactive] public ObservableCollection<SupplierModel> Suppliers { get; }
 
-    [Reactive]
-    public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+    [Reactive] public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
-    public MainWindowViewModel()
-    {
-        
-    }
     public MainWindowViewModel(IHttpClientFactory httpClientFactory, ManagerDbContext dbContext)
     {
         Orders = new ObservableCollection<OrderModel>();
         Materials = new ObservableCollection<MaterialModel>();
         Suppliers = new ObservableCollection<SupplierModel>();
-        
+
         _managerDbContext = dbContext;
         _httpClientFactory = httpClientFactory;
 
         InitializationNotifier = NotifyTaskCompletion.Create(InitializeAsync());
     }
 
-    public void OnClick()
-    {
-       
-    }
-    
     private async Task InitializeAsync()
     {
         await SetOrdersAsync();
         await SetMaterialsAsync();
         await SetSuppliersAsync();
-       
     }
 
     private async Task SetOrdersAsync()
@@ -95,10 +81,11 @@ public class MainWindowViewModel : ViewModelBase
 
         var orderModels = orders.Select(x => new OrderModel(
             x.Guid,
-            x.GoodIds.ToList(),
+            x.GoodIds == null ? new List<long>() : x.GoodIds.ToList(),
             StateOrder.New.GetDescription(),
             x.Price,
-            DateTime.UtcNow)
+            DateTime.UtcNow,
+            x.Guid.ToString())
         ).ToList();
 
         foreach (var orderModel in orderModels)
@@ -108,7 +95,10 @@ public class MainWindowViewModel : ViewModelBase
                 goodIds = orderModel.GoodIds
             });
             var goods = JsonConvert.DeserializeObject<List<GoodDto>>(await responseGoods.Content.ReadAsStringAsync());
-            orderModel.NameGoods = String.Join(", ", goods.Select(x => x.Name).ToArray());
+            if (goods != null)
+            {
+                orderModel.NameGoods = String.Join(", ", goods.Select(x => x.Name).ToArray());
+            }
         }
 
         Orders.AddRange(orderModels);
@@ -117,7 +107,7 @@ public class MainWindowViewModel : ViewModelBase
     private async Task SetMaterialsAsync()
     {
         using var client = _httpClientFactory.CreateClient();
-        
+
         var responseMaterial = await client.GetAsync("http://localhost:5188/Material");
         var materialDto =
             JsonConvert.DeserializeObject<List<MaterialDto>>(await responseMaterial.Content.ReadAsStringAsync());
@@ -127,14 +117,14 @@ public class MainWindowViewModel : ViewModelBase
             Count = x.Count,
             Name = x.Name
         });
-        
+
         Materials.AddRange(materialModels);
     }
-    
+
     private async Task SetSuppliersAsync()
     {
         using var client = _httpClientFactory.CreateClient();
-        
+
         var responseMaterial = await client.GetAsync("http://localhost:5188/Supplier");
         var supplierDto =
             JsonConvert.DeserializeObject<List<SupplierDto>>(await responseMaterial.Content.ReadAsStringAsync());
@@ -147,7 +137,7 @@ public class MainWindowViewModel : ViewModelBase
             Raiting = x.Raiting,
             IsActive = x.IsActive
         });
-        
+
         Suppliers.AddRange(supplierModels);
     }
 }

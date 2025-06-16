@@ -8,7 +8,7 @@ public class SupplierDto : IDto
     
     public string? Description { get; set; }
 
-    public string Phone { get; set; }
+    public string? Phone { get; set; }
 
     public bool IsActive { get; set; }
 

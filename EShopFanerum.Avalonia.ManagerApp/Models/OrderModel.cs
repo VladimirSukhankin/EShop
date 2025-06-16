@@ -16,13 +16,14 @@ public class OrderModel
     
     public DateTime CreatedDateTime { get; set; }
 
-    public OrderModel(Guid guid, List<long> goodIds, string stateOrder, decimal price, DateTime createdDateTime)
+    public OrderModel(Guid guid, List<long> goodIds, string stateOrder, decimal price, DateTime createdDateTime, string nameGoods)
     {
         Guid = guid;
         GoodIds = goodIds;
         StateOrder = stateOrder;
         Price = price;
         CreatedDateTime = createdDateTime;
+        NameGoods = nameGoods;
     }
     
 }

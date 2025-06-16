@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EShopFanerum.Core.RabbitMQ.Dto;
+using EShopFanerum.Service.BusService.Model;
 using MassTransit;
 
 namespace EShopFanerum.Avalonia.ManagerApp.Consumer;

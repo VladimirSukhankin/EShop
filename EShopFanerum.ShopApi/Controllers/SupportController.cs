@@ -1,6 +1,6 @@
-﻿using EShopFanerum.Core.RabbitMQ.Dto;
-using EShopFanerum.Infrastructure.Dto;
+﻿
 using EShopFanerum.Infrastructure.Services;
+using EShopFanerum.Service.BusService.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EShopFanerum.ShopApi.Controllers;

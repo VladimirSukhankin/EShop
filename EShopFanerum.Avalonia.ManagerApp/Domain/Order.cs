@@ -10,7 +10,7 @@ public class Order
     [Key]
     public Guid Guid { get; set; }
     
-    public long[] GoodIds { get; set; }
+    public long[]? GoodIds { get; set; }
 
     public decimal Price { get; set; }
 
