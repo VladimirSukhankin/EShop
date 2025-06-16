@@ -7,22 +7,12 @@
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         <LangVersion>11</LangVersion>
-
-        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-        <GenerateBindingRedirectsOutputType>false</GenerateBindingRedirectsOutputType>
-
-        <!-- Дополнительные настройки -->
-        <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
     </PropertyGroup>
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**"/>
     </ItemGroup>
-    <ItemGroup>
-        <PackageReference Remove="Microsoft.Bcl" />
-        <PackageReference Remove="Microsoft.Bcl.Async" />
-        <PackageReference Remove="Microsoft.Bcl.Build" />
-    </ItemGroup>
+
 
     <ItemGroup>
         <PackageReference Include="Avalonia" Version="11.3.1" />
@@ -37,13 +27,12 @@
         <PackageReference Include="MassTransit.RabbitMQ" Version="8.4.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.17" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.17">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.17">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
@@ -57,17 +46,18 @@
 
 
     <ItemGroup>
-      <AdditionalFiles Include="Styles\AppStyles.axaml" />
+        <AdditionalFiles Include="Styles\AppStyles.axaml" />
     </ItemGroup>
 
 
     <ItemGroup>
-      <ProjectReference Include="..\EShopFanerum.Infrastructure\EShopFanerum.Infrastructure.csproj" />
-      <ProjectReference Include="..\EShopFanerum.Persistance\EShopFanerum.Persistance.csproj" />
+        <ProjectReference Include="..\EShopFanerum.Core\EShopFanerum.Core.csproj" />
+        <ProjectReference Include="..\EShopFanerum.Infrastructure\EShopFanerum.Infrastructure.csproj" />
+        <ProjectReference Include="..\EShopFanerum.Persistance\EShopFanerum.Persistance.csproj" />
     </ItemGroup>
 
 
     <ItemGroup>
-      <Folder Include="Migrations\" />
+        <Folder Include="Migrations\" />
     </ItemGroup>
 </Project>
